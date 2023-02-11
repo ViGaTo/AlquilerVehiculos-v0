@@ -121,6 +121,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return nombre + " - " + dni + " (" + telefono + ")";
+		return String.format("%s - %s (%s)",nombre,dni,telefono);
 	}
 }

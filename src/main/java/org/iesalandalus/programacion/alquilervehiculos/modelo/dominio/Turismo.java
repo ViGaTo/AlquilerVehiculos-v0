@@ -107,6 +107,6 @@ public class Turismo {
 
 	@Override
 	public String toString() {
-		return marca + " " + modelo + " (" + cilindrada + "CV) - " + matricula;
+		return String.format("%s %s (%sCV) - %s",marca,modelo,cilindrada,matricula);
 	}
 }
