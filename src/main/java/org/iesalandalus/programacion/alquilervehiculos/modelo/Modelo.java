@@ -43,17 +43,20 @@ public class Modelo {
 	}
 	
 	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
-		if(alquiler == null)
+		if(alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede realizar un alquiler nulo.");
+		}
 		
 		Cliente clienteBuscado = clientes.buscar(alquiler.getCliente());
 		Turismo turismoBuscado = turismos.buscar(alquiler.getTurismo());
 		
-		if(clienteBuscado == null)
+		if(clienteBuscado == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el cliente del alquiler.");
+		}
 		
-		if(turismoBuscado == null)
+		if(turismoBuscado == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
+		}
 		
 		alquileres.insertar(new Alquiler(alquiler));
 	}

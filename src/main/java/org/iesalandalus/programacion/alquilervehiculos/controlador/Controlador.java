@@ -17,11 +17,13 @@ public class Controlador {
 	Modelo modelo;
 	
 	public Controlador(Modelo modelo, Vista vista){
-		if(modelo == null)
+		if(modelo == null) {
 			throw new NullPointerException("ERROR: El modelo no puede ser nulo.");
+		}
 		
-		if(vista == null)
+		if(vista == null) {
 			throw new NullPointerException("ERROR: La vista no puede ser nula.");
+		}
 		
 		this.modelo = modelo;
 		this.vista = vista;
