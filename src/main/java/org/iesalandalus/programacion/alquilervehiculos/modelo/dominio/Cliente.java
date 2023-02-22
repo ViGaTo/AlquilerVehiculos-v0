@@ -30,9 +30,7 @@ public class Cliente {
 	}
 	
 	public static Cliente getClienteConDni(String dni) {
-		Cliente clienteDni = new Cliente("Manuel", dni, "650111111");
-		
-		return clienteDni;
+		return new Cliente("Manuel", dni, "650111111");
 	}
 
 	private boolean comprobarLetraDni(String dni) {
@@ -62,11 +60,13 @@ public class Cliente {
 	}
 
 	public void setNombre(String nombre) {
-		if (nombre == null)
+		if (nombre == null) {
 			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");
+		}
 		
-		if(!nombre.matches(ER_NOMBRE))
+		if(!nombre.matches(ER_NOMBRE)) {
 			throw new IllegalArgumentException("ERROR: El nombre no tiene un formato válido.");
+		}
 		
 		this.nombre = nombre;
 	}
@@ -76,14 +76,17 @@ public class Cliente {
 	}
 
 	private void setDni(String dni) {
-		if(dni == null)
+		if(dni == null) {
 			throw new NullPointerException("ERROR: El DNI no puede ser nulo.");
+		}
 		
-		if(!dni.matches(ER_DNI))
+		if(!dni.matches(ER_DNI)) {
 			throw new IllegalArgumentException("ERROR: El DNI no tiene un formato válido.");
+		}
 		
-		if(!comprobarLetraDni(dni))
+		if(!comprobarLetraDni(dni)) {
 			throw new IllegalArgumentException("ERROR: La letra del DNI no es correcta.");
+		}
 		
 		this.dni = dni;
 	}
@@ -93,11 +96,13 @@ public class Cliente {
 	}
 
 	public void setTelefono(String telefono) {
-		if(telefono == null)
+		if(telefono == null) {
 			throw new NullPointerException("ERROR: El teléfono no puede ser nulo.");
+		}
 		
-		if(!telefono.matches(ER_TELEFONO))
+		if(!telefono.matches(ER_TELEFONO)) {
 			throw new IllegalArgumentException("ERROR: El teléfono no tiene un formato válido.");
+		}
 		
 		this.telefono = telefono;
 	}

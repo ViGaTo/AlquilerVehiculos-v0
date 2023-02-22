@@ -9,49 +9,57 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
 
 public class Turismos {
 
-private static List<Turismo> coleccionTurismos;
-	
+	private List<Turismo> coleccionTurismos;
+
 	public Turismos() {
 		coleccionTurismos = new ArrayList<>();
 	}
 
-	public static List<Turismo> get() {
+	public List<Turismo> get() {
 		return new ArrayList<>(coleccionTurismos);
 	}
-	
+
 	public int getCantidad() {
 		return coleccionTurismos.size();
 	}
-	
+
 	public void insertar(Turismo turismo) throws OperationNotSupportedException {
-		if(turismo == null)
+		if (turismo == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un turismo nulo.");
-		
-		int i = coleccionTurismos.indexOf(turismo);
-		if(i != -1)
+		}
+
+		if (coleccionTurismos.contains(turismo)) {
 			throw new OperationNotSupportedException("ERROR: Ya existe un turismo con esa matrícula.");
-		
+		}
+
 		coleccionTurismos.add(turismo);
 	}
-	
-	public Turismo buscar(Turismo turismo) throws OperationNotSupportedException {
-		if(turismo == null)
+
+	public Turismo buscar(Turismo turismo) {
+		Turismo turismoEncontrado;
+		
+		if (turismo == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un turismo nulo.");
+		}
 		
-		int i = coleccionTurismos.indexOf(turismo);
-		if(i == -1)
-			throw new OperationNotSupportedException("ERROR: No existe ningún turismo con esa matrícula.");
+		int indice = coleccionTurismos.indexOf(turismo);
+		if(coleccionTurismos.contains(turismo)) {
+			turismoEncontrado = coleccionTurismos.get(indice);
+		}else {
+			turismoEncontrado = null;
+		}
 		
-		return new Turismo(coleccionTurismos.get(i));
+		return turismoEncontrado;
 	}
-	
+
 	public void borrar(Turismo turismo) throws OperationNotSupportedException {
-		if(turismo == null)
+		if (turismo == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un turismo nulo.");
-		
-		int i = coleccionTurismos.indexOf(turismo);
-		if(i == -1)
+		}
+
+		if (!coleccionTurismos.contains(turismo)) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún turismo con esa matrícula.");
+		}
 		
 		coleccionTurismos.remove(turismo);
 	}

@@ -88,25 +88,25 @@ public class Alquiler {
 	}
 
 	public Cliente getCliente() {
-		return new Cliente(cliente);
+		return cliente;
 	}
 
 	private void setCliente(Cliente cliente) {
 		if (cliente == null)
 			throw new NullPointerException("ERROR: El cliente no puede ser nulo.");
 
-		this.cliente = new Cliente(cliente);
+		this.cliente = cliente;
 	}
 
 	public Turismo getTurismo() {
-		return new Turismo(turismo);
+		return turismo;
 	}
 
 	private void setTurismo(Turismo turismo) {
 		if (turismo == null)
 			throw new NullPointerException("ERROR: El turismo no puede ser nulo.");
 
-		this.turismo = new Turismo(turismo);
+		this.turismo = turismo;
 	}
 
 	@Override

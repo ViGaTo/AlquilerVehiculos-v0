@@ -9,65 +9,76 @@ import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
 
 public class Clientes {
 
-	private static List<Cliente> coleccionClientes;
-	
+	private List<Cliente> coleccionClientes;
+
 	public Clientes() {
 		coleccionClientes = new ArrayList<>();
 	}
 
-	public static List<Cliente> get() {
+	public List<Cliente> get() {
 		return new ArrayList<>(coleccionClientes);
 	}
-	
+
 	public int getCantidad() {
 		return coleccionClientes.size();
 	}
-	
+
 	public void insertar(Cliente cliente) throws OperationNotSupportedException {
-		if(cliente == null)
+		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un cliente nulo.");
-		
-		int i = coleccionClientes.indexOf(cliente);
-		if(i != -1)
+		}
+
+		if (coleccionClientes.contains(cliente)) {
 			throw new OperationNotSupportedException("ERROR: Ya existe un cliente con ese DNI.");
-		
+		}
+
 		coleccionClientes.add(cliente);
 	}
-	
-	public Cliente buscar(Cliente cliente) throws OperationNotSupportedException {
-		if(cliente == null)
+
+	public Cliente buscar(Cliente cliente) {
+		Cliente clienteEncontrado;
+		
+		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un cliente nulo.");
+		}
+
+		int indice = coleccionClientes.indexOf(cliente);
+		if(coleccionClientes.contains(cliente)) {
+			clienteEncontrado = coleccionClientes.get(indice);
+		}else {
+			clienteEncontrado = null;
+		}
 		
-		int i = coleccionClientes.indexOf(cliente);
-		if(i == -1)
-			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
-		
-		return new Cliente(coleccionClientes.get(i));
+		return clienteEncontrado;
 	}
-	
+
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {
-		if(cliente == null)
+		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un cliente nulo.");
-		
-		int i = coleccionClientes.indexOf(cliente);
-		if(i == -1)
+		}
+
+		if (!coleccionClientes.contains(cliente)) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
-		
+		}
+
 		coleccionClientes.remove(cliente);
 	}
-	
+
 	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
-		if(cliente == null)
+		if (cliente == null) {
 			throw new NullPointerException("ERROR: No se puede modificar un cliente nulo.");
-		
-		int i = coleccionClientes.indexOf(cliente);
-		if(i == -1)
+		}
+
+		if (!coleccionClientes.contains(cliente)) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
-		
-		if(nombre != null && !nombre.trim().isEmpty())
-		cliente.setNombre(nombre);
-		
-		if(telefono != null && !telefono.trim().isEmpty())
-		cliente.setTelefono(telefono);
+		}
+
+		if ((nombre != null) && (!nombre.trim().isEmpty())) {
+			buscar(cliente).setNombre(nombre);
+		}
+
+		if ((telefono != null) && (!telefono.trim().isEmpty())) {
+			buscar(cliente).setTelefono(telefono);
+		}
 	}
 }
